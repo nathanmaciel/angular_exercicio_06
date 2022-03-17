@@ -7,12 +7,16 @@ import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { TempFormComponent } from './temp-form/temp-form.component';
 import { ReacFormComponent } from './reac-form/reac-form.component';
+import { ValidateTelDirective } from './directives/validate-tel.directive';
+import { ValidateCPFDirective } from './directives/validate-cpf.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     TempFormComponent,
-    ReacFormComponent
+    ReacFormComponent,
+    ValidateTelDirective,
+    ValidateCPFDirective,
   ],
   imports: [
     BrowserModule,
