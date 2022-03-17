@@ -1,0 +1,24 @@
+.whole-page{
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+.temp-form{
+    border: 1px solid black;
+    width: 50%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.reac-form{
+    border: 1px solid black;
+    width: 50%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

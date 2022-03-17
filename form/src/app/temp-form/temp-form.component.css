@@ -1,0 +1,12 @@
+.form-items{
+    display: flex;
+    flex-direction: column;
+}
+.senha mat-form-field + mat-form-field {
+    margin-left: 5px;
+}
+.tels{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

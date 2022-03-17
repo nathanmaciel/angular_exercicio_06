@@ -5,10 +5,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
+import { TempFormComponent } from './temp-form/temp-form.component';
+import { ReacFormComponent } from './reac-form/reac-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TempFormComponent,
+    ReacFormComponent
   ],
   imports: [
     BrowserModule,
