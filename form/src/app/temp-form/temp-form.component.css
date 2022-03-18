@@ -7,6 +7,17 @@
 }
 .tels{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
+.tel{
+    flex-grow: 1;
+    width: 100%;
+}
+.insideBox{
+    display: flex;
+    justify-content: center;
+}
+

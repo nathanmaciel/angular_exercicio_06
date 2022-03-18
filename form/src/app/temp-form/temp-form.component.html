@@ -6,7 +6,7 @@
 
     <mat-card-content>
         <form action="" class="form-items">
-            <mat-form-field appearance="fill" color="warn">
+            <mat-form-field appearance="fill" color="accent">
                 <mat-label>Nome</mat-label>
                 <input 
                     type="text" 
@@ -23,7 +23,7 @@
                     <span *ngIf="inputName.errors?.['minlength']">Seu nome precisa ter no mínimo 2 letras</span>
                 </mat-error>
             </mat-form-field>
-            <mat-form-field appearance="fill" color="warn">
+            <mat-form-field appearance="fill" color="accent">
                 <mat-label>Sobrenome</mat-label>
                 <input 
                     type="text" 
@@ -40,7 +40,7 @@
                     <span *ngIf="inputLastName.errors?.['minlength']">Seu sobrenome precisa ter no mínimo 2 letras</span>
                 </mat-error>
             </mat-form-field>
-            <mat-form-field appearance="fill" color="warn">
+            <mat-form-field appearance="fill" color="accent">
                 <mat-label>Username</mat-label>
                 <input 
                     type="text" 
@@ -57,7 +57,7 @@
                     <span *ngIf="inputUsername.errors?.['minlength']">Seu username precisa ter no mínimo 6 caracteres</span>
                 </mat-error>
             </mat-form-field>
-            <mat-form-field appearance="fill" color="warn">
+            <mat-form-field appearance="fill" color="accent">
                 <mat-label>CPF</mat-label>
                 <input 
                     type="text" 
@@ -74,35 +74,53 @@
                     <span *ngIf="inputCPF.errors?.['validateCPFInvalid']">Um CPF sempre tem 11 números</span>
                 </mat-error>
             </mat-form-field>
-            <mat-form-field appearance="fill" color="warn">
-                <mat-label>Telefone</mat-label>
-                <div class="tels" *ngFor="let tel of tels; index as i">
-                    <input 
-                        type="text" 
-                        matInput 
-                        placeholder="(11) 11111-1111"
-                        [(ngModel)]="tels[i]"
-                        #inputTel="ngModel"
-                        name="tel"
-                        required="i == 0"
-                        appValidateTel
-                    >
-                    <button 
-                        *ngIf="i == tels.length - 1"
-                        mat-raised-button 
-                        color=""
-                        (click)="addTelSpace()"
-                    >+</button>
-                    <button 
-                        *ngIf="i != tels.length - 1"
-                        mat-raised-button 
-                        color=""
-                        (click)="removeTelSpace(i)"
-                    >-</button>
-                </div>
-                <mat-error>Adicione pelo menos um número de telefone, com no mínimo 11 e no máximo 13 dígitos</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="fill" color="warn">
+            <div class="tels">
+                <mat-form-field appearance="fill" color="accent" class="tel" *ngFor="let t of objPhone; index as i">
+                    <mat-label>Telefone {{i+1}}</mat-label>
+                        <div class="insideBox">
+                            <input 
+                            type="text" 
+                            matInput 
+                            placeholder="(11) 11111-1111"
+                            [(ngModel)]="t.phone"
+                            name="mainphone"
+                        >
+                        <button
+                            *ngIf="i==0"
+                            mat-raised-button 
+                            color=""
+                            (click)="addTelSpace()"
+                        >+</button>
+                        <button
+                            *ngIf="i!=0"
+                            mat-raised-button 
+                            color=""
+                            (click)="removeTelSpace(i)"
+                        >-</button>
+                        </div>
+                    <mat-error>Adicione pelo menos um número de telefone, com no mínimo 11 e no máximo 13 dígitos</mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field appearance="fill" color="accent" class="tel" *ngFor="let t of objPhone; index as i">
+                <mat-label>Telefone Adicional</mat-label>
+                        <div class="insideBox">
+                            <input 
+                            type="text" 
+                            matInput 
+                            placeholder="(11) 11111-1111"
+                            [(ngModel)]="t.phone"
+                            name="adtphone"
+                        >
+                        <button
+                            mat-raised-button 
+                            color=""
+                            (click)="removeTelSpace(i)"
+                        >-</button>
+                        </div>
+                    <mat-error>Adicione pelo menos um número de telefone, com no mínimo 11 e no máximo 13 dígitos</mat-error>
+                </mat-form-field> -->
+
+            </div>
+            <mat-form-field appearance="fill" color="accent">
                 <mat-label>Endereço</mat-label>
                 <input 
                     type="text" 
@@ -113,7 +131,7 @@
                     #inputAdress="ngModel"
                 >
             </mat-form-field>
-            <mat-form-field appearance="fill" color="warn">
+            <mat-form-field appearance="fill" color="accent">
                 <mat-label>Complemento</mat-label>
                 <input 
                     type="text" 
@@ -125,7 +143,7 @@
                 >
             </mat-form-field>
             <div class="senha">
-                <mat-form-field appearance="fill" color="warn">
+                <mat-form-field appearance="fill" color="accent">
                     <mat-label>Senha</mat-label>
                     <input 
                         type="password" 
@@ -142,7 +160,7 @@
                         <span *ngIf="inputPassword.errors?.['minlength']">Sua senha tem que ter no mínimo 6 caracteres</span>
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="fill" color="warn">
+                <mat-form-field appearance="fill" color="accent">
                     <mat-label>Confirme senha</mat-label>
                     <input 
                         type="password" 
@@ -162,7 +180,7 @@
             </div>
             <button 
                 mat-raised-button 
-                color="warn" 
+                color="accent" 
                 type="submit"
                 [disabled]="everythingOk()"
             >Cadastre-se</button>

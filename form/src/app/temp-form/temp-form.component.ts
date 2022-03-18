@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+interface phones{
+    phone:string
+}
+
 @Component({
   selector: 'app-temp-form',
   templateUrl: './temp-form.component.html',
@@ -7,21 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TempFormComponent implements OnInit {
 
+
   name: string = ''
   lastName: string = ''
   username: string = ''
   cpf: string = ''
-  tels: string[] = ['']
+  mainPhone: string = ''
+  aditPhones: string[] = []
   adress: string = ''
   compl: string = ''
   password: string = ''
   confPassword: string = ''
 
+  objPhone: phones[] = [{phone: ''}]
+
+
   addTelSpace(){
-    this.tels.push('')
+    this.objPhone.push({phone: ''})
   }
   removeTelSpace(i: number){
-    this.tels.splice(i, 1)
+    this.objPhone.splice(i, 1)
   }
 
   // minMaxNumbers(min: number, max: number, input: string): boolean{
