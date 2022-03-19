@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TempFormComponent } from './temp-form/temp-form.component';
 import { ReacFormComponent } from './reac-form/reac-form.component';
 import { ValidateTelDirective } from './directives/validate-tel.directive';
@@ -26,7 +26,8 @@ import { ExmpDiagComponent } from './exmp-diag/exmp-diag.component';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

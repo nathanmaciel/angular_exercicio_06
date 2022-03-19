@@ -1,10 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from '../temp-form/temp-form.component';
+import {DialogData, Phones} from '../modules/dialog-data';
 
-interface phones{
-  phone:string
-}
 
 @Component({
   selector: 'app-exmp-diag',

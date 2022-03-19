@@ -1,23 +1,12 @@
+import { PathLocationStrategy } from '@angular/common';
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ExmpDiagComponent } from '../exmp-diag/exmp-diag.component';
+import { DialogData, Phones} from '../modules/dialog-data';
 
-interface phones{
-    phone:string
-}
 
-export interface DialogData {
-  name: string 
-  lastName: string 
-  username: string 
-  cpf: string 
-  mainPhone: string 
-  objPhone: phones[]
-  adress: string 
-  compl: string 
-  password: string 
-}
+
 
 @Component({
   selector: 'app-temp-form',
@@ -31,7 +20,7 @@ export class TempFormComponent implements OnInit {
   username: string = ''
   cpf: string = ''
   mainPhone: string = ''
-  objPhone: phones[] = []
+  objPhone: Phones[] = []
   adress: string = ''
   compl: string = ''
   password: string = ''
@@ -75,7 +64,7 @@ export class TempFormComponent implements OnInit {
   }
 
   printData(form: NgForm){
-    
+
     console.log(`%cUsuário ${this.userNum}`, 'font-size: 20px;')
     console.log(`Nome: ${this.name}`)
     console.log(`Sobrenome: ${this.lastName}`)

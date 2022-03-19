@@ -13,7 +13,7 @@ import { AbstractControl, Validator, NG_VALIDATORS, ValidationErrors } from '@an
 })
 export class ValidateTelDirective implements Validator{
 
-  validate(control: AbstractControl): ValidationErrors | null {
+  validate(control: AbstractControl): {[key: string]: any}  | null {
     var num: string = (control.value != null ? control.value : '')
     var numArr: string[]|null = (num.match(/\d/g) != null ? num.match(/\d/g) : ['1'])
     var ret:string;
