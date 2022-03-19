@@ -5,7 +5,11 @@
     </mat-card-header>
 
     <mat-card-content>
-        <form action="" class="form-items">
+        <form action="" 
+        class="form-items"
+        (ngSubmit)="openDialog()"
+        #form="ngForm"
+        >
             <mat-form-field appearance="fill" color="accent">
                 <mat-label>Nome</mat-label>
                 <input 
@@ -180,8 +184,9 @@
             <button 
                 mat-raised-button 
                 color="accent" 
-                type="submit"
-            >Cadastre-se</button>
+                type="submit">
+                Cadastre-se
+            </button>
         </form>
     </mat-card-content>
 </mat-card>

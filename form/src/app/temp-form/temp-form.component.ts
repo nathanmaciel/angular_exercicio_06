@@ -1,8 +1,21 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ExmpDiagComponent } from '../exmp-diag/exmp-diag.component';
 
 interface phones{
     phone:string
-    required: boolean
+}
+
+export interface DialogData {
+  name: string 
+  lastName: string 
+  username: string 
+  cpf: string 
+  mainPhone: string 
+  objPhone: phones[]
+  adress: string 
+  compl: string 
+  password: string 
 }
 
 @Component({
@@ -12,57 +25,57 @@ interface phones{
 })
 export class TempFormComponent implements OnInit {
 
+  // constructor(public dialog: MatDialog) {}
+
+  constructor(public dialog: MatDialog) {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ExmpDiagComponent, {
+      width: '250px',
+      data: {
+        name: this.name,
+        lastName: this.lastName, 
+        username: this.username, 
+        cpf: this.cpf, 
+        mainPhone: this.mainPhone, 
+        objPhone: this.objPhone,
+        adress: this.adress, 
+        compl: this.compl, 
+        password: this.password
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if(result == '') console.log(typeof(result))
+      if (result == true) console.log(`Dialog result aaaaa: ${result}`);
+    });
+  }
 
   name: string = ''
   lastName: string = ''
   username: string = ''
   cpf: string = ''
   mainPhone: string = ''
-  aditPhones: string[] = []
+  objPhone: phones[] = [{phone: ''}]
   adress: string = ''
   compl: string = ''
-  @Output()
   password: string = ''
   confPassword: string = ''
 
-  objPhone: phones[] = [{phone: '', required: true}]
-
-
   addTelSpace(){
-    this.objPhone.push({phone: '', required: false})
+    this.objPhone.push({phone: ''})
   }
   removeTelSpace(i: number){
     this.objPhone.splice(i, 1)
   }
 
-  getPass(): string{
-    return this.password
-  }
+  // @Output()
+  // submit: EventEmitter<any> = new EventEmitter<any>()
 
-  // minMaxNumbers(min: number, max: number, input: string): boolean{
-  //   var num = input.match(/\d/g)?.join('')
-  //   if (num == null) num = ''
-  //   console.log(num)
-  //   return num.length >= min && num.length <= max
+  // submitForm(){
+  //   this.submit.emit()
   // }
-
-  // isSame(): boolean {
-  //   if(this.password == this.confPassword && this.confPassword.length > 0) return false
-  //   if(this.password == this.confPassword && this.confPassword.length == 0) return false
-  //   else return true
-  // }
-
-  // everythingOk(): boolean{
-  //   if(
-  //     this.name.length >= 2 &&
-  //     this.lastName.length >= 2 &&
-  //     this.username.length >=  6 &&
-  //     this.username.length >=  6
-  //   ) return false
-  //   else return true
-  // }
-
-  constructor() { }
 
   ngOnInit(): void {
   }

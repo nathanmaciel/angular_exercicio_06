@@ -10,6 +10,7 @@ import { ReacFormComponent } from './reac-form/reac-form.component';
 import { ValidateTelDirective } from './directives/validate-tel.directive';
 import { ValidateCPFDirective } from './directives/validate-cpf.directive';
 import { ValidatePassDirective } from './directives/validate-pass.directive';
+import { ExmpDiagComponent } from './exmp-diag/exmp-diag.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ValidatePassDirective } from './directives/validate-pass.directive';
     ValidateTelDirective,
     ValidateCPFDirective,
     ValidatePassDirective,
+    ExmpDiagComponent,
   ],
   imports: [
     BrowserModule,
