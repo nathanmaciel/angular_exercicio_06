@@ -7,7 +7,7 @@
     <mat-card-content>
         <form action="" 
         class="form-items"
-        (ngSubmit)="openDialog()"
+        (ngSubmit)="openDialog(form)"
         #form="ngForm"
         >
             <mat-form-field appearance="fill" color="accent">
@@ -93,6 +93,7 @@
                             appValidateTel
                         >
                         <button
+                        type="button"
                             mat-raised-button 
                             color=""
                             (click)="addTelSpace()"
@@ -114,6 +115,7 @@
                             name="adtphone"
                         >
                         <button
+                        type="button"
                             mat-raised-button 
                             color=""
                             (click)="removeTelSpace(i)"
@@ -184,7 +186,16 @@
             <button 
                 mat-raised-button 
                 color="accent" 
-                type="submit">
+                type="submit"
+                [disabled]="
+                inputName.invalid ||
+                inputLastName.invalid ||
+                inputUsername.invalid ||
+                inputCPF.invalid ||
+                inputMainPhone.invalid ||
+                inputPassword.invalid ||
+                inputConfPassword.invalid"
+                >
                 Cadastre-se
             </button>
         </form>

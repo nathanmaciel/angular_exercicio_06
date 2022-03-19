@@ -1,13 +1,25 @@
 <h2 mat-dialog-title>Confira seus dados</h2>
 <mat-dialog-content class="mat-typography">
 <p><strong>Nome:</strong>  {{data.name}} </p>
+
 <p><strong>Sobrenome:</strong>  {{ data.lastName }} </p>
+
 <p><strong>Username:</strong>  {{ data.username }} </p>
+
 <p><strong>CPF:</strong>  {{ data.cpf }} </p>
+
 <p><strong>Telefone Principal:</strong>  {{ data.mainPhone }}  </p>
+
+<ng-container *ngFor="let tel of data.objPhone; index as i">
+  <p *ngIf="tel.phone.length > 0"><strong>Telefone Adicional {{i+1}}:</strong>   {{ tel.phone }}</p>
+</ng-container>
+
 <p><strong>Endereço:</strong>  {{ data.adress }} </p>
+
 <p><strong>Complemento:</strong>   {{ data.compl }} </p>
+
 <p><strong>Senha:</strong>  {{ data.password }} </p>
+
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Corrigir</button>
