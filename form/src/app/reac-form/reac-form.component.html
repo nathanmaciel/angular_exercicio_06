@@ -7,6 +7,7 @@
         <form action="" 
         class="form-items" 
         id="main-form"
+        (ngSubmit)="openDialog()"
         [formGroup]="formData"
         >
             <mat-form-field appearance="fill" color="accent">
@@ -120,7 +121,6 @@
                             matInput 
                             placeholder="senha"
                             formControlName="password"
-                            (keyup)="changeKey()"
                         >
                         <mat-error>
                             <span *ngIf="formData.get('passes')?.get('password')?.hasError('required')">Campo obrigatório</span>
@@ -134,10 +134,11 @@
                             matInput 
                             placeholder="senha"
                             formControlName="confPassword"
+                            (click)="changeKey()"
                         >
                         <mat-error>
-                            <!-- <span *ngIf="formData.get('confPassword')?.hasError('required')">Campo obrigatório</span> -->
-                            <span *ngIf="formData.get('passes')?.hasError('required')">Suas senhas não batem</span>
+                            <span *ngIf="formData.get('passes')?.get('confPassword')?.hasError('required')">Campo obrigatório</span>
+                            <span *ngIf="!(formData.get('passes')?.get('confPassword')?.hasError('required'))"> Senhas precisam bater</span>
                         </mat-error>
                     </mat-form-field>
                 </form>
