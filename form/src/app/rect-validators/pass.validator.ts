@@ -2,17 +2,13 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export function passValidator(control: AbstractControl) {
   console.log('aaa')
-  console.log(control)
-  var num: string = (control.value != null ? control.value : '')
-  var numArr: string[]|null = (num.match(/\d/g) != null ? num.match(/\d/g) : ['1'])
-  var ret:string;
-  if (numArr != null){
-    ret = numArr.join('')
-  } else {ret = ''}
-  
-  if(ret.length != 11 && num.length != 0){
-    return {'validateCPFInvalid': true}
+  console.log(control.value.password)
+
+  if (control.value.password != control.value.confPassword && control.value.confPassword.length > 0){
+    console.log('iguais')
+    return {'passValidation': true}
   }
 
+  console.log('null')
   return null;
 }

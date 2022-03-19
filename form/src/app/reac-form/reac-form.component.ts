@@ -41,14 +41,16 @@ export class ReacFormComponent{
       ]),
       adress: new FormControl(''),
       compl: new FormControl(''),
-      password: new FormControl('',[
-        Validators.required,
-        Validators.minLength(6)
-      ]),
-      confPassword: new FormControl('',[
-        Validators.required,
-        passValidator
-      ])
+      passes: new FormGroup({
+        password: new FormControl('',[
+          Validators.minLength(6),
+          
+        ]),
+        confPassword: new FormControl('',[
+        ])
+      },[
+        passValidator,
+      ] )
   })
 
   phoneArr: FormArray = this.formData.get('phones') as FormArray

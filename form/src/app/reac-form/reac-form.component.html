@@ -112,33 +112,35 @@
                 >
             </mat-form-field>
             <div class="senha">
-                <mat-form-field appearance="fill" color="accent">
-                    <mat-label>Senha</mat-label>
-                    <input 
-                        type="password" 
-                        matInput 
-                        placeholder="senha"
-                        formControlName="password"
-                        (keyup)="changeKey()"
-                    >
-                    <mat-error>
-                        <span *ngIf="formData.get('password')?.hasError('required')">Campo obrigatório</span>
-                        <span *ngIf="formData.get('password')?.hasError('minlength')">Sua senha precisa ter no mínimo 6 caracteres</span>
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="fill" color="accent">
-                    <mat-label>Confirme senha</mat-label>
-                    <input 
-                        type="password" 
-                        matInput 
-                        placeholder="senha"
-                        formControlName="confPassword"
-                    >
-                    <mat-error>
-                        <span *ngIf="formData.get('confPassword')?.hasError('required')">Campo obrigatório</span>
-                        <span *ngIf="formData.get('confPassword')?.hasError('passValidator')">Suas senhas não batem</span>
-                    </mat-error>
-                </mat-form-field>
+                <form action="" formGroupName="passes">
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Senha</mat-label>
+                        <input 
+                            type="password" 
+                            matInput 
+                            placeholder="senha"
+                            formControlName="password"
+                            (keyup)="changeKey()"
+                        >
+                        <mat-error>
+                            <span *ngIf="formData.get('passes')?.get('password')?.hasError('required')">Campo obrigatório</span>
+                            <span *ngIf="formData.get('passes')?.get('password')?.hasError('minlength')">Sua senha precisa ter no mínimo 6 caracteres</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Confirme senha</mat-label>
+                        <input 
+                            type="password" 
+                            matInput 
+                            placeholder="senha"
+                            formControlName="confPassword"
+                        >
+                        <mat-error>
+                            <!-- <span *ngIf="formData.get('confPassword')?.hasError('required')">Campo obrigatório</span> -->
+                            <span *ngIf="formData.get('passes')?.hasError('required')">Suas senhas não batem</span>
+                        </mat-error>
+                    </mat-form-field>
+                </form>
             </div>
             <button 
                 mat-raised-button 
