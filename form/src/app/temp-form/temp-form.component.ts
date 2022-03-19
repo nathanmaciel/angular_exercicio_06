@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 interface phones{
     phone:string
+    required: boolean
 }
 
 @Component({
@@ -20,17 +21,22 @@ export class TempFormComponent implements OnInit {
   aditPhones: string[] = []
   adress: string = ''
   compl: string = ''
+  @Output()
   password: string = ''
   confPassword: string = ''
 
-  objPhone: phones[] = [{phone: ''}]
+  objPhone: phones[] = [{phone: '', required: true}]
 
 
   addTelSpace(){
-    this.objPhone.push({phone: ''})
+    this.objPhone.push({phone: '', required: false})
   }
   removeTelSpace(i: number){
     this.objPhone.splice(i, 1)
+  }
+
+  getPass(): string{
+    return this.password
   }
 
   // minMaxNumbers(min: number, max: number, input: string): boolean{
@@ -40,21 +46,21 @@ export class TempFormComponent implements OnInit {
   //   return num.length >= min && num.length <= max
   // }
 
-  isSame(): boolean {
-    if(this.password == this.confPassword && this.confPassword.length > 0) return false
-    if(this.password == this.confPassword && this.confPassword.length == 0) return false
-    else return true
-  }
+  // isSame(): boolean {
+  //   if(this.password == this.confPassword && this.confPassword.length > 0) return false
+  //   if(this.password == this.confPassword && this.confPassword.length == 0) return false
+  //   else return true
+  // }
 
-  everythingOk(): boolean{
-    if(
-      this.name.length >= 2 &&
-      this.lastName.length >= 2 &&
-      this.username.length >=  6 &&
-      this.username.length >=  6
-    ) return false
-    else return true
-  }
+  // everythingOk(): boolean{
+  //   if(
+  //     this.name.length >= 2 &&
+  //     this.lastName.length >= 2 &&
+  //     this.username.length >=  6 &&
+  //     this.username.length >=  6
+  //   ) return false
+  //   else return true
+  // }
 
   constructor() { }
 

@@ -9,6 +9,7 @@ import { TempFormComponent } from './temp-form/temp-form.component';
 import { ReacFormComponent } from './reac-form/reac-form.component';
 import { ValidateTelDirective } from './directives/validate-tel.directive';
 import { ValidateCPFDirective } from './directives/validate-cpf.directive';
+import { ValidatePassDirective } from './directives/validate-pass.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ValidateCPFDirective } from './directives/validate-cpf.directive';
     ReacFormComponent,
     ValidateTelDirective,
     ValidateCPFDirective,
+    ValidatePassDirective,
   ],
   imports: [
     BrowserModule,

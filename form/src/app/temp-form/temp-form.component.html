@@ -71,37 +71,36 @@
                 >
                 <mat-error *ngIf="inputCPF.invalid">
                     <span *ngIf="inputCPF.errors?.['required']">Campo obrigatório</span>
-                    <span *ngIf="inputCPF.errors?.['validateCPFInvalid']">Um CPF sempre tem 11 números</span>
+                    <span *ngIf="inputCPF.errors?.['validateCPFInvalid']">Um CPF sempre tem 11 dígito numéricos</span>
                 </mat-error>
             </mat-form-field>
             <div class="tels">
-                <mat-form-field appearance="fill" color="accent" class="tel" *ngFor="let t of objPhone; index as i">
-                    <mat-label>Telefone {{i+1}}</mat-label>
+                <mat-form-field appearance="fill" color="accent" class="tel">
+                    <mat-label>Telefone Principal</mat-label>
                         <div class="insideBox">
                             <input 
                             type="text" 
                             matInput 
                             placeholder="(11) 11111-1111"
-                            [(ngModel)]="t.phone"
+                            [(ngModel)]="mainPhone"
                             name="mainphone"
+                            #inputMainPhone="ngModel"
+                            required
+                            appValidateTel
                         >
                         <button
-                            *ngIf="i==0"
                             mat-raised-button 
                             color=""
                             (click)="addTelSpace()"
                         >+</button>
-                        <button
-                            *ngIf="i!=0"
-                            mat-raised-button 
-                            color=""
-                            (click)="removeTelSpace(i)"
-                        >-</button>
                         </div>
-                    <mat-error>Adicione pelo menos um número de telefone, com no mínimo 11 e no máximo 13 dígitos</mat-error>
+                    <mat-error *ngIf="inputMainPhone.invalid">
+                            <span *ngIf="inputMainPhone.errors?.['required']">Campo obrigatório</span>
+                            <span *ngIf="inputMainPhone.errors?.['validateTelInvalid']">Um telefone válido tem entre 11 e 13 dígitos numéricos</span>
+                    </mat-error>
                 </mat-form-field>
-                <!-- <mat-form-field appearance="fill" color="accent" class="tel" *ngFor="let t of objPhone; index as i">
-                <mat-label>Telefone Adicional</mat-label>
+                <mat-form-field appearance="fill" color="accent" class="tel" *ngFor="let t of objPhone; index as i">
+                <mat-label>Telefone Adicional {{i + 1}}</mat-label>
                         <div class="insideBox">
                             <input 
                             type="text" 
@@ -116,8 +115,7 @@
                             (click)="removeTelSpace(i)"
                         >-</button>
                         </div>
-                    <mat-error>Adicione pelo menos um número de telefone, com no mínimo 11 e no máximo 13 dígitos</mat-error>
-                </mat-form-field> -->
+                </mat-form-field>
 
             </div>
             <mat-form-field appearance="fill" color="accent">
@@ -168,13 +166,14 @@
                         placeholder="senha"
                         [(ngModel)]="confPassword"
                         name="confPassword"
-                         #inputConfPass="ngModel"
-                         required
-                         minlength="6"
+                        #inputConfPassword="ngModel"
+                        required
+                        [appValidatePass]="password"
                     >
-                    <mat-error *ngIf="inputConfPass.invalid">
-                        <span *ngIf="inputConfPass.errors?.['required']">Campo obrigatório</span>
-                        <span *ngIf="isSame()">As senhas digitadas devem ser iguais</span>
+                    <mat-error *ngIf="inputConfPassword.invalid">
+                        <span *ngIf="inputConfPassword.errors?.['required']">Campo obrigatório</span>
+                        <span *ngIf="inputConfPassword.errors?.['validatePassInvalid']"
+                            >Suas senhas não batem</span>
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -182,7 +181,6 @@
                 mat-raised-button 
                 color="accent" 
                 type="submit"
-                [disabled]="everythingOk()"
             >Cadastre-se</button>
         </form>
     </mat-card-content>

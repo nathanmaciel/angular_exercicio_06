@@ -14,12 +14,14 @@ import { AbstractControl, Validator, NG_VALIDATORS, ValidationErrors } from '@an
 export class ValidateCPFDirective implements Validator{
 
   validate(control: AbstractControl): {[key: string]: any}  | null {
-    var num = control.value?.match(/\d/g)
+    var num: string = (control.value != null ? control.value : '')
+    var numArr: string[]|null = (num.match(/\d/g) != null ? num.match(/\d/g) : ['1'])
     var ret:string;
-    if (num == null) ret = ''
-    else ret = num.join('')
+    if (numArr != null){
+      ret = numArr.join('')
+    } else {ret = ''}
     
-    if(ret.length != 11){
+    if(ret.length != 11 && num.length != 0){
       return {'validateCPFInvalid': true}
     }
 
