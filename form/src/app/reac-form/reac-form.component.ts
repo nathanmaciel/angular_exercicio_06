@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormArray, FormControl, FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormBuilder, Validators, NgForm, RequiredValidator, CheckboxRequiredValidator } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ValidateCPFDirective } from '../directives/validate-cpf.directive';
 import { ValidateTelDirective } from '../directives/validate-tel.directive';
@@ -70,9 +70,13 @@ export class ReacFormComponent{
   }
 
   changeKey(){
+    var aux = this.passKey
     this.passKey = this.formData.get('passes')?.get('password')?.value
+    this.passConference.clearValidators()
+    this.passConference.setValidators(Validators.required)
     this.passConference.addValidators(passValidator(this.passKey))
   }
+  
 
   phoneObj: Phones[] = [{phone: '12'}];
   mainPhone: string = ''

@@ -5,7 +5,7 @@
     flex-direction: row;
 }
 .temp-form{
-    border: 1px solid black;
+    padding: 10vh 0 10vh 10vw;
     width: 50%;
     min-height: 100%;
     display: flex;
@@ -14,7 +14,7 @@
     align-items: center;
 }
 .reac-form{
-    border: 1px solid black;
+    padding: 10vh 10vw 10vh 0;
     width: 50%;
     min-height: 100%;
     display: flex;
