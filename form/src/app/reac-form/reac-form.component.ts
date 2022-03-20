@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormArray, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ValidateCPFDirective } from '../directives/validate-cpf.directive';
 import { ValidateTelDirective } from '../directives/validate-tel.directive';
@@ -19,6 +19,7 @@ export class ReacFormComponent{
 
   passKey: string = ''
 
+
   formData: FormGroup = new FormGroup({
       name: new FormControl('',[
         Validators.required,
@@ -37,7 +38,7 @@ export class ReacFormComponent{
         ValidateCPF
       ]),
       phones: new FormArray([
-        new FormControl('12345',[
+        new FormControl('',[
           Validators.required,
           ValidatePhone
         ])
@@ -73,16 +74,40 @@ export class ReacFormComponent{
     this.passConference.addValidators(passValidator(this.passKey))
   }
 
+  phoneObj: Phones[] = [{phone: '12'}];
+  mainPhone: string = ''
+
+  mainPhoneObj: Phones = {phone: '12'}
+
+
+  userNum: number = 1
+
   constructor(public dialog: MatDialog) {}
 
   openDialog(){
+
+    var index = 0
+    for(let i of this.phoneArr.controls){
+      this.phoneObj[index].phone = i.value
+      this.phoneObj.push({phone: ''})
+      index++;
+    }
+
+    var aux = this.phoneObj.shift()
+    if (aux != undefined){
+      this.mainPhoneObj = aux
+      this.mainPhone = this.mainPhoneObj.phone
+    }
+
     const dialogRef = this.dialog.open(ExmpDiagComponent, {
       width: '250px',
       data: {
         name: this.formData.get('name')?.value,
         lastName: this.formData.get('lastName')?.value, 
         username: this.formData.get('username')?.value, 
-        cpf: this.formData.get('cpf')?.value, 
+        cpf: this.formData.get('cpf')?.value,
+        mainPhone: this.mainPhone,
+        objPhone: this.phoneObj,
         adress: this.formData.get('adress')?.value, 
         compl: this.formData.get('compl')?.value, 
         password: this.formData.get('passes')?.get('password')?.value
@@ -91,12 +116,33 @@ export class ReacFormComponent{
 
     dialogRef.afterClosed().subscribe(result => {
 
-      // if(result == '') {
-      //   // console.log(`%cUsuário ${this.userNum}`, 'font-size: 20px;')
-      //   // console.log('Dados Corrigidos')
-      // }
-      // if (result == true);
+      if(result == '') {
+        console.log(`%cUsuário ${this.userNum}`, 'font-size: 20px;')
+        console.log('Dados Corrigidos')
+      }
+      if (result == true) this.printData();
     });
   }
+
+  printData(){
+
+    console.log(`%cUsuário ${this.userNum}`, 'font-size: 20px;')
+    console.log(`Nome: ${this.formData.get('name')?.value}`)
+    console.log(`Sobrenome: ${this.formData.get('lastName')?.value}`)
+    console.log(`Username: ${this.formData.get('lastName')?.value}`)
+    console.log(`CPF: ${this.formData.get('cpf')?.value}`)
+    console.log(`Telefone Principal: ${this.mainPhone}`)
+    for(let i in this.phoneObj) console.log(`Telefone adicional ${i+1}: ${this.phoneObj[i].phone}`)
+    console.log(`Endereço: ${this.formData.get('adress')?.value}`)
+    console.log(`Complemento: ${this.formData.get('compl')?.value}`)
+    console.log(`Senha: ${this.formData.get('password')?.value}`)
+
+    this.formData.reset()
+    this.formData.setValidators(null)
+
+    this.userNum++
+  }
+
+
 
 }
