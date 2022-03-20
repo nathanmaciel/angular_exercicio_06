@@ -139,7 +139,7 @@ export class ReacFormComponent{
     for(let i in this.phoneObj) console.log(`Telefone adicional ${i+1}: ${this.phoneObj[i].phone}`)
     console.log(`Endereço: ${this.formData.get('adress')?.value}`)
     console.log(`Complemento: ${this.formData.get('compl')?.value}`)
-    console.log(`Senha: ${this.formData.get('password')?.value}`)
+    console.log(`Senha: ${this.passKey}`)
 
     form.resetForm()
 
