@@ -84,7 +84,7 @@ export class ReacFormComponent{
 
   constructor(public dialog: MatDialog) {}
 
-  openDialog(){
+  openDialog(form: any){
 
     var index = 0
     for(let i of this.phoneArr.controls){
@@ -100,7 +100,7 @@ export class ReacFormComponent{
     }
 
     const dialogRef = this.dialog.open(ExmpDiagComponent, {
-      width: '250px',
+      width: '300px',
       data: {
         name: this.formData.get('name')?.value,
         lastName: this.formData.get('lastName')?.value, 
@@ -120,11 +120,11 @@ export class ReacFormComponent{
         console.log(`%cUsuário ${this.userNum}`, 'font-size: 20px;')
         console.log('Dados Corrigidos')
       }
-      if (result == true) this.printData();
+      if (result == true) this.printData(form);
     });
   }
 
-  printData(){
+  printData(form: any){
 
     console.log(`%cUsuário ${this.userNum}`, 'font-size: 20px;')
     console.log(`Nome: ${this.formData.get('name')?.value}`)
@@ -137,8 +137,7 @@ export class ReacFormComponent{
     console.log(`Complemento: ${this.formData.get('compl')?.value}`)
     console.log(`Senha: ${this.formData.get('password')?.value}`)
 
-    this.formData.reset()
-    this.formData.setValidators(null)
+    form.resetForm()
 
     this.userNum++
   }

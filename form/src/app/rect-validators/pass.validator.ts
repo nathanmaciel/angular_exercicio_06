@@ -15,9 +15,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export function passValidator(pass: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    console.log(`control: ${control.value}  |  pass ${pass}`)
     const forbidden = (control.value != pass);
-    console.log(`forb1: ${forbidden}`)
     return forbidden ? {validationPass: {value: control.value}} : null;
   };
 }

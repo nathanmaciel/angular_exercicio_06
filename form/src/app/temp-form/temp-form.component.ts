@@ -39,7 +39,7 @@ export class TempFormComponent implements OnInit {
 
   openDialog(form: NgForm) {
     const dialogRef = this.dialog.open(ExmpDiagComponent, {
-      width: '250px',
+      width: '300px',
       data: {
         name: this.name,
         lastName: this.lastName, 

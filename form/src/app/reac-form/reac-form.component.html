@@ -7,8 +7,9 @@
         <form action="" 
         class="form-items" 
         id="main-form"
-        (ngSubmit)="openDialog()"
+        (ngSubmit)="openDialog(form)"
         [formGroup]="formData"
+        #form="ngForm"        
         >
             <mat-form-field appearance="fill" color="accent">
                 <mat-label>Nome</mat-label>
@@ -147,6 +148,15 @@
                 mat-raised-button 
                 color="accent" 
                 type="submit"
+                [disabled]="
+                formData.get('name')?.invalid ||
+                formData.get('lastName')?.invalid ||
+                formData.get('username')?.invalid ||
+                formData.get('cpf')?.invalid ||
+                phoneArr.controls[0].invalid||
+                formData.get('passes')?.get('confPassword')?.invalid ||
+                formData.get('passes')?.get('password')?.invalid
+                "
             >Cadastre-se</button>
         </form>
     </mat-card-content>
