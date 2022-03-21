@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, EventEmitter, Input } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormBuilder, Validators, NgForm, RequiredValidator, CheckboxRequiredValidator } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ValidateCPFDirective } from '../directives/validate-cpf.directive';
@@ -7,7 +7,7 @@ import { ExmpDiagComponent } from '../exmp-diag/exmp-diag.component';
 import { ValidateCPF } from '../rect-validators/cpf.validator';
 import { passValidator } from '../rect-validators/pass.validator';
 import { ValidatePhone } from '../rect-validators/tel.validator';
-import { DialogData, Phones} from '../modules/dialog-data';
+import { DialogData, Phones, user} from '../modules/dialog-data';
 
 
 @Component({
@@ -15,7 +15,11 @@ import { DialogData, Phones} from '../modules/dialog-data';
   templateUrl: './reac-form.component.html',
   styleUrls: ['./reac-form.component.css']
 })
-export class ReacFormComponent{
+export class ReacFormComponent implements OnInit{
+
+
+  ngOnInit(){
+  }
 
   passKey: string = ''
 
@@ -83,7 +87,7 @@ export class ReacFormComponent{
 
   mainPhoneObj: Phones = {phone: '12'}
 
-  userNum: number = 1
+  @Input() nextUser: number =  1
 
   constructor(public dialog: MatDialog) {}
 
@@ -120,16 +124,18 @@ export class ReacFormComponent{
     dialogRef.afterClosed().subscribe(result => {
 
       if(result == '') {
-        console.log(`%cUsuário ${this.userNum}`, 'font-size: 20px;')
+        console.log(`%cUsuário ${this.nextUser} (Reactive)`, 'font-size: 20px;')
         console.log('Dados Corrigidos')
       }
       if (result == true) this.printData(form);
     });
   }
 
+  @Output() userNumAdd: EventEmitter<any> = new EventEmitter<any>()
+
   printData(form: any){
 
-    console.log(`%cReactive - Usuário ${this.userNum}`, 'font-size: 20px;')
+    console.log(`%cUsuário ${this.nextUser} (Reactive)`, 'font-size: 20px;')
     console.log(`Nome: ${this.formData.get('name')?.value}`)
     console.log(`Sobrenome: ${this.formData.get('lastName')?.value}`)
     console.log(`Username: ${this.formData.get('lastName')?.value}`)
@@ -146,7 +152,7 @@ export class ReacFormComponent{
 
     form.resetForm()
 
-    this.userNum++
+    this.userNumAdd.emit()
   }
 
 

@@ -1,5 +1,5 @@
 import { PathLocationStrategy } from '@angular/common';
-import { Component, OnInit, Output, EventEmitter, ViewChild} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, Input} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AppComponent } from '../app.component';
@@ -28,7 +28,7 @@ export class TempFormComponent implements OnInit {
   confPassword: string = ''
 
  
-  userNum: number = 1
+  @Input() nextUser: number = 1
 
   addTelSpace(){
     this.objPhone.push({phone: ''})
@@ -58,16 +58,18 @@ export class TempFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       if(result == '') {
-        console.log(`%cUsuário ${this.userNum}`, 'font-size: 20px;')
+        console.log(`%cUsuário ${this.nextUser} (Template)`, 'font-size: 20px;')
         console.log('Dados Corrigidos')
       }
       if (result == true) this.printData(form);
     });
   }
 
+  @Output() userNumAdd: EventEmitter<any> = new EventEmitter<any>()
+
   printData(form: NgForm){
 
-    console.log(`%cTemplate - Usuário ${this.userNum}`, 'font-size: 20px;')
+    console.log(`%cUsuário ${this.nextUser} (Template)`, 'font-size: 20px;')
     console.log(`Nome: ${this.name}`)
     console.log(`Sobrenome: ${this.lastName}`)
     console.log(`Username: ${this.username}`)
@@ -80,7 +82,7 @@ export class TempFormComponent implements OnInit {
 
     form.resetForm()
 
-    this.userNum++
+    this.userNumAdd.emit()
   }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 
 
 @Component({
@@ -8,8 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'form';
+
+  nextUser: number = 1
   
-  userNum: number = 1
+  emitToTemp(){
+    this.nextUser++;
+  }
 
 }
 

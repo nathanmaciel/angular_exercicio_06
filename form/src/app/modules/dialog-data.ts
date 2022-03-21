@@ -12,3 +12,5 @@ export interface DialogData {
     compl: string 
     password: string 
   }
+
+export var user: number = 1

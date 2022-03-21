@@ -1,11 +1,12 @@
 <div class="whole-page">
   <!-- Formulário produzido com Template Driven Forms -->
   <div class="temp-form">
-    <app-temp-form></app-temp-form>
+    <app-temp-form (userNumAdd)="emitToTemp()" [nextUser]="nextUser"></app-temp-form>
   </div>
 
   <!-- Formulário produzido com Reactive Forms -->
   <div class="reac-form">
-    <app-reac-form></app-reac-form>
+    <app-reac-form (userNumAdd)="emitToTemp()" [nextUser]="nextUser">
+    </app-reac-form>
   </div>
 </div>
