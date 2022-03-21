@@ -83,7 +83,6 @@ export class ReacFormComponent{
 
   mainPhoneObj: Phones = {phone: '12'}
 
-
   userNum: number = 1
 
   constructor(public dialog: MatDialog) {}
@@ -130,13 +129,17 @@ export class ReacFormComponent{
 
   printData(form: any){
 
-    console.log(`%cUsuário ${this.userNum}`, 'font-size: 20px;')
+    console.log(`%cReactive - Usuário ${this.userNum}`, 'font-size: 20px;')
     console.log(`Nome: ${this.formData.get('name')?.value}`)
     console.log(`Sobrenome: ${this.formData.get('lastName')?.value}`)
     console.log(`Username: ${this.formData.get('lastName')?.value}`)
     console.log(`CPF: ${this.formData.get('cpf')?.value}`)
     console.log(`Telefone Principal: ${this.mainPhone}`)
-    for(let i in this.phoneObj) console.log(`Telefone adicional ${i+1}: ${this.phoneObj[i].phone}`)
+    for(let i in this.phoneObj) {
+      if (this.phoneObj[i].phone.length > 0 ){
+        console.log(`Telefone adicional ${i+1}: ${this.phoneObj[i].phone}`)
+      }
+    }
     console.log(`Endereço: ${this.formData.get('adress')?.value}`)
     console.log(`Complemento: ${this.formData.get('compl')?.value}`)
     console.log(`Senha: ${this.passKey}`)

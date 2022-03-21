@@ -1,7 +1,8 @@
 import { PathLocationStrategy } from '@angular/common';
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { AppComponent } from '../app.component';
 import { ExmpDiagComponent } from '../exmp-diag/exmp-diag.component';
 import { DialogData, Phones} from '../modules/dialog-data';
 
@@ -26,6 +27,7 @@ export class TempFormComponent implements OnInit {
   password: string = ''
   confPassword: string = ''
 
+ 
   userNum: number = 1
 
   addTelSpace(){
@@ -65,7 +67,7 @@ export class TempFormComponent implements OnInit {
 
   printData(form: NgForm){
 
-    console.log(`%cUsuário ${this.userNum}`, 'font-size: 20px;')
+    console.log(`%cTemplate - Usuário ${this.userNum}`, 'font-size: 20px;')
     console.log(`Nome: ${this.name}`)
     console.log(`Sobrenome: ${this.lastName}`)
     console.log(`Username: ${this.username}`)
