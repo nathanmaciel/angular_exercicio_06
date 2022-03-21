@@ -138,7 +138,7 @@
                             matInput 
                             placeholder="senha"
                             formControlName="confPassword"
-                            (click)="changeKey()"
+                            (focus)="changeKey()"
                         >
                         <mat-error>
                             <span *ngIf="formData.get('passes')?.get('confPassword')?.hasError('required')">Campo obrigatório</span>
